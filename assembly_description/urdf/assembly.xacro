@@ -6,9 +6,9 @@
 <xacro:include filename="$(find assembly_description)/urdf/assembly.gazebo" />
 <link name="base_link">
   <inertial>
-    <origin xyz="0.00010879006364735942 0.0 0.04996087741941865" rpy="0 0 0"/>
-    <mass value="49.115933255049825"/>
-    <inertia ixx="0.265828" iyy="1.032963" izz="1.278206" ixy="-0.0" iyz="-0.0" ixz="0.000192"/>
+    <origin xyz="-7.189661161242765e-05 -2.323440234690456e-17 0.049960916667525355" rpy="0 0 0"/>
+    <mass value="49.16525625971119"/>
+    <inertia ixx="0.266663" iyy="1.034564" izz="1.280639" ixy="-0.0" iyz="-0.0" ixz="0.000192"/>
   </inertial>
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -21,48 +21,6 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://assembly_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="right_wheel_1">
-  <inertial>
-    <origin xyz="-0.15000000000000002 -0.012500000000000011 6.938893903907228e-18" rpy="0 0 0"/>
-    <mass value="1.541343895667492"/>
-    <inertia ixx="0.001044" iyy="0.001927" izz="0.001044" ixy="0.0" iyz="0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.0 0.125 -0.05" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://assembly_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="steel_satin"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.0 0.125 -0.05" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://assembly_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="left_wheel_1">
-  <inertial>
-    <origin xyz="-0.15000000000000002 0.012500000000000011 6.938893903907228e-18" rpy="0 0 0"/>
-    <mass value="1.541343895667492"/>
-    <inertia ixx="0.001044" iyy="0.001927" izz="0.001044" ixy="0.0" iyz="0.0" ixz="0.0"/>
-  </inertial>
-  <visual>
-    <origin xyz="-0.0 -0.125 -0.05" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://assembly_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="steel_satin"/>
-  </visual>
-  <collision>
-    <origin xyz="-0.0 -0.125 -0.05" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://assembly_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -88,24 +46,66 @@
   </collision>
 </link>
 
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-5.551115123125783e-17 -0.0124999999999999 -4.85722573273506e-17" rpy="0 0 0"/>
+    <mass value="1.541343895667492"/>
+    <inertia ixx="0.001044" iyy="0.001927" izz="0.001044" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.18 0.135 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://assembly_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin xyz="0.18 0.135 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://assembly_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.012499999999999983 6.938893903907228e-18" rpy="0 0 0"/>
+    <mass value="1.541343895667492"/>
+    <inertia ixx="0.001044" iyy="0.001927" izz="0.001044" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.18 -0.135 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://assembly_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin xyz="0.18 -0.135 -0.05" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://assembly_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid 3" type="fixed">
+  <origin xyz="0.0 0.0 0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
 <joint name="right" type="continuous">
-  <origin xyz="0.0 -0.125 0.05" rpy="0 0 0"/>
+  <origin xyz="-0.18 -0.135 0.05" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="right_wheel_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
 </joint>
 
 <joint name="left" type="continuous">
-  <origin xyz="0.0 0.125 0.05" rpy="0 0 0"/>
+  <origin xyz="-0.18 0.135 0.05" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="left_wheel_1"/>
   <axis xyz="0.0 1.0 0.0"/>
-</joint>
-
-<joint name="Rigid 3" type="fixed">
-  <origin xyz="0.0 0.0 0.075" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="lidar_1"/>
 </joint>
 
 </robot>
